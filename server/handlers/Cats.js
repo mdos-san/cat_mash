@@ -1,8 +1,24 @@
 class Cats {
-    constructor() {}
+    constructor(data) {
+        this.data = data;
+    }
 
     getCatsPair() {
         console.log('TODO');
+    }
+
+    catsPair(random) {
+        let r1;
+        let r2;
+        let pair;
+
+        r1 = parseInt(random() * this.data.length);
+        r2 = parseInt(random() * this.data.length);
+        pair = [];
+        pair.push(this.data[r1]);
+        pair.push(this.data[r2]);
+
+        return (pair);
     }
 }
 
