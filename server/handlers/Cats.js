@@ -3,8 +3,11 @@ class Cats {
         this.data = data;
     }
 
-    getCatsPair() {
-        console.log('TODO');
+    getCatsPair(req, res) {
+        let pair;
+
+        pair = this.catsPair(Math.random);
+        res.end(JSON.stringify(pair));
     }
 
     catsPair(random) {
