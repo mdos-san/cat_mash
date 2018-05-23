@@ -1,4 +1,4 @@
-import Router from './index'
+import Router from '@/router/index'
 
 import Ranking from '@/components/Ranking'
 import Vote from '@/components/Vote'
