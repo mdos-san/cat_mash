@@ -1,0 +1,3 @@
+[
+    {"method": "get", "path": "/pair", "handler": "Cats", "action": "getCatsPair"}
+]
