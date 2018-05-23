@@ -4,7 +4,7 @@
   "description": "Server for Cat Mash",
   "main": "index.js",
   "scripts": {
-    "test": "npx jasmine core/*"
+    "test": "npx jasmine core/* handlers/*"
   },
   "author": "mdos-san",
   "license": "ISC",
