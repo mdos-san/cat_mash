@@ -1,14 +1,21 @@
 const Server = require('./Server');
 
 describe('[Class] Server', () => {
-    it('should run an express server on port 8081', () => {
-        let app = {
-            listen: () => {}
+    let app;
+    let express;
+
+    beforeEach(() => {
+        app = {
+            get: () => {},
+            listen: () => {},
+            post: () => {}
         };
-        let express = {
+        express = {
             mock: () => {}
         };
+    });
 
+    it('should run an express server on port 8081', () => {
         spyOn(express, 'mock').and.returnValues(app);
         spyOn(app, 'listen');
 
@@ -17,5 +24,40 @@ describe('[Class] Server', () => {
 
         expect(express.mock).toHaveBeenCalled();
         expect(app.listen).toHaveBeenCalledWith(8081);
+    });
+
+    it('should load routes', () => {
+        spyOn(express, 'mock').and.returnValues(app);
+        spyOn(app, 'get');
+        spyOn(app, 'post');
+
+        let routes = [
+            {
+                "method": "get",
+                "path": "/getpath",
+                "handler": "HandlerGet",
+                "action": "getAction"
+            },
+            {
+                "method": "post",
+                "path": "/postpath",
+                "handler": "HandlerPost",
+                "action": "postAction"
+            }
+        ];
+        let handlers = {
+            HandlerGet: {
+                getAction: () => "get"
+            },
+            HandlerPost: {
+                postAction: () => "post"
+            }
+        }
+
+        var server = new Server(express.mock, routes, handlers);
+        server.loadRoutes();
+
+        expect(app.get).toHaveBeenCalledWith("/getpath", handlers.HandlerGet.getAction)
+        expect(app.post).toHaveBeenCalledWith("/postpath", handlers.HandlerPost.postAction)
     });
 });
