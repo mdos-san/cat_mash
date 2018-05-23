@@ -6,6 +6,7 @@ class Server {
     }
 
     run() {
+        this.loadRoutes();
         this.app.listen(8081);
     }
 

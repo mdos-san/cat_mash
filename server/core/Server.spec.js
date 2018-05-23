@@ -20,10 +20,14 @@ describe('[Class] Server', () => {
         spyOn(app, 'listen');
 
         var server = new Server(express.mock);
+
+        spyOn(server, 'loadRoutes');
+
         server.run();
 
         expect(express.mock).toHaveBeenCalled();
         expect(app.listen).toHaveBeenCalledWith(8081);
+        expect(server.loadRoutes).toHaveBeenCalled();
     });
 
     it('should load routes', () => {
