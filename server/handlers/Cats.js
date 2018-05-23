@@ -5,3 +5,5 @@ class Cats {
         console.log('TODO');
     }
 }
+
+module.exports = Cats;
