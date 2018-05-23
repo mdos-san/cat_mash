@@ -1,4 +1,6 @@
 import Router from './index'
+
+import Ranking from '@/components/Ranking'
 import Vote from '@/components/Vote'
 
 describe('Router', () => {
@@ -8,10 +10,24 @@ describe('Router', () => {
         let name = 'Vote';
 
         Router.options.routes.forEach(route => {
-           if (route.name === name && route.path === path) {
-               expect(route.component).toBe(Vote);
-               exist = true;
-           } 
+            if (route.name === name && route.path === path) {
+                expect(route.component).toBe(Vote);
+                exist = true;
+            }
+        });
+        expect(exist).toBe(true);
+    });
+
+    it('should have a route for ranking', () => {
+        let exist = false;
+        let path = '/ranking';
+        let name = 'Ranking';
+
+        Router.options.routes.forEach(route => {
+            if (route.name === name && route.path === path) {
+                expect(route.component).toBe(Ranking);
+                exist = true;
+            }
         });
         expect(exist).toBe(true);
     });
