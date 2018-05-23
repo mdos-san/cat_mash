@@ -12,7 +12,10 @@ class Server {
 
     loadRoutes() {
         this.routes.forEach(route => {
-            this.app[route.method](route.path, this.handlers[route.handler][route.action]);
+            this.app[route.method](
+                route.path,
+                this.handlers[route.handler][route.action].bind(this.handlers[route.handler])
+            );
         });
     }
 }

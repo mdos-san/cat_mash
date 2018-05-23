@@ -57,11 +57,15 @@ describe('[Class] Server', () => {
                 postAction: () => "post"
             }
         }
+        spyOn(handlers.HandlerGet.getAction, 'bind');
+        spyOn(handlers.HandlerPost.postAction, 'bind');
 
         var server = new Server(express.mock, routes, handlers);
         server.loadRoutes();
 
-        expect(app.get).toHaveBeenCalledWith("/getpath", handlers.HandlerGet.getAction)
-        expect(app.post).toHaveBeenCalledWith("/postpath", handlers.HandlerPost.postAction)
+        expect(app.get).toHaveBeenCalledWith("/getpath", undefined)
+        expect(handlers.HandlerGet.getAction.bind).toHaveBeenCalledWith(handlers.HandlerGet);
+        expect(app.post).toHaveBeenCalledWith("/postpath", undefined)
+        expect(handlers.HandlerPost.postAction.bind).toHaveBeenCalledWith(handlers.HandlerPost);
     });
 });
