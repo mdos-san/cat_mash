@@ -24,7 +24,25 @@ class Cats {
         return (pair);
     }
 
-    vote() {
+    vote(req, res) {
+        let obj = {
+            success: true,
+            message: ""
+        }
+
+        if (!req.body || !req.body.id0) {
+            obj.success = false;
+            obj.message = "Please provide id0 param";
+            res.end(JSON.stringify(obj));
+            return null
+        }
+
+        if (!req.body.id1) {
+            obj.success = false;
+            obj.message = "Please provide id1 param";
+            res.end(JSON.stringify(obj));
+            return null
+        }
 
     }
 }

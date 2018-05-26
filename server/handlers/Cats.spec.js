@@ -1,6 +1,15 @@
 const Cats = require('./Cats');
 
 describe('[CLASS] Cats', () => {
+    let req;
+    let res;
+    beforeEach(() => {
+        req = {
+        };
+        res = {
+            end: () => {}
+        };
+    });
     it('should store cats provided in constructor', () => {
         let obj = [
             {id: 'id', url: 'url'}
@@ -41,5 +50,28 @@ describe('[CLASS] Cats', () => {
         cats.getCatsPair(null, res);
 
         expect(res.end).toHaveBeenCalledWith(JSON.stringify(pair));
+    });
+
+    it('vote should check for id0 presence', () => {
+        let cats;
+        let obj;
+        
+        cats = new Cats();
+        obj = {success: false, message: "Please provide id0 param"};
+        spyOn(res, 'end');
+        cats.vote(req, res);
+        expect(res.end).toHaveBeenCalledWith(JSON.stringify(obj));
+    });
+
+    it('vote should check for id1 presence', () => {
+        let cats;
+        let obj;
+        
+        cats = new Cats();
+        obj = {success: false, message: "Please provide id1 param"};
+        req.body = { id0:  "id0" }
+        spyOn(res, 'end');
+        cats.vote(req, res);
+        expect(res.end).toHaveBeenCalledWith(JSON.stringify(obj));
     });
 });
