@@ -23,6 +23,10 @@ class Cats {
 
         return (pair);
     }
+
+    vote() {
+
+    }
 }
 
 module.exports = Cats;
