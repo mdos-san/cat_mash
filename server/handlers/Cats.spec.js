@@ -74,4 +74,24 @@ describe('[CLASS] Cats', () => {
         cats.vote(req, res);
         expect(res.end).toHaveBeenCalledWith(JSON.stringify(obj));
     });
+
+    it('voteInsert should insert vote in database', () => {
+        let cats;
+        let ids = ['xyz', 'abc']
+        let vote = 'abc';
+        let ip = '127.0.0.1';
+        let insertParam = ['abc:xyz', 'abc', '127.0.0.1'];
+        let psql = {
+            none: () => {}
+        };
+        
+        cats = new Cats();
+        spyOn(psql, 'none');
+        spyOn(cats, 'voteInsertGetParam').and.returnValue(insertParam);
+        cats.voteInsert(ids, vote, ip, psql);
+        expect(psql.none).toHaveBeenCalledWith(
+            'INSERT INTO vote(voteBetween, vote, ip) VALUES ($1, $2, $3)',
+            insertParam
+        );
+    });
 });

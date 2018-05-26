@@ -25,6 +25,7 @@ class Cats {
     }
 
     vote(req, res) {
+        let ids = [];
         let obj = {
             success: true,
             message: ""
@@ -43,6 +44,15 @@ class Cats {
             res.end(JSON.stringify(obj));
             return null
         }
+
+    }
+
+    voteInsert(ids, vote, ip, psql) {
+        let param = this.voteInsertGetParam(ids, vote, ip);
+        psql.none('INSERT INTO vote(voteBetween, vote, ip) VALUES ($1, $2, $3)', param);
+    }
+
+    voteInsertGetParam() {
 
     }
 }
