@@ -1,5 +1,6 @@
 const express = require('express');
 const Server = require('./core/Server');
+const bodyparser = require('body-parser');
 
 // Routes
 const routes = require('./routes.json');
@@ -13,5 +14,5 @@ const handlers = {
     Cats: new Cats(cats.images)
 };
 
-let server = new Server(express, routes, handlers);
+let server = new Server(express, routes, handlers, bodyparser);
 server.run();

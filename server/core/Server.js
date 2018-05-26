@@ -1,6 +1,8 @@
 class Server {
-    constructor(express, routes, handlers) {
+    constructor(express, routes, handlers, bodyparser) {
         this.app = express();
+        if (bodyparser)
+            this.app.use(bodyparser.json());
         this.routes = routes;
         this.handlers = handlers;
     }
@@ -11,12 +13,14 @@ class Server {
     }
 
     loadRoutes() {
-        this.routes.forEach(route => {
-            this.app[route.method](
-                route.path,
-                this.handlers[route.handler][route.action].bind(this.handlers[route.handler])
-            );
-        });
+        if (this.routes) {
+            this.routes.forEach(route => {
+                this.app[route.method](
+                    route.path,
+                    this.handlers[route.handler][route.action].bind(this.handlers[route.handler])
+                );
+            });
+        }
     }
 }
 

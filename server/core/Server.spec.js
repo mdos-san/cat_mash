@@ -8,10 +8,15 @@ describe('[Class] Server', () => {
         app = {
             get: () => {},
             listen: () => {},
-            post: () => {}
+            post: () => {},
+            use: () => {}
         };
         express = {
-            mock: () => {}
+            mock: () => { return app; }
+        };
+
+        bodyparser = {
+            json: () => { return 42; }
         };
     });
 
@@ -67,5 +72,18 @@ describe('[Class] Server', () => {
         expect(handlers.HandlerGet.getAction.bind).toHaveBeenCalledWith(handlers.HandlerGet);
         expect(app.post).toHaveBeenCalledWith("/postpath", undefined)
         expect(handlers.HandlerPost.postAction.bind).toHaveBeenCalledWith(handlers.HandlerPost);
+    });
+
+    it('use the bodyparser.json middleware', () => {
+        let counter = 0;
+        app.use = (middleware) => {
+            counter++;
+            expect(middleware).toBe(bodyparser.json());
+        }
+
+        let server = new Server(express.mock, null, null, bodyparser);
+        server.run();
+
+        expect(counter).toBe(1);
     });
 });
