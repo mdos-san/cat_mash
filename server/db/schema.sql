@@ -1,0 +1,6 @@
+CREATE TABLE vote (
+    id SERIAL PRIMARY KEY,
+    ip VARCHAR NOT NULL,
+    voteBetween VARCHAR NOT NULL,
+    vote VARCHAR NOT NULL
+);
