@@ -94,4 +94,15 @@ describe('[CLASS] Cats', () => {
             insertParam
         );
     });
+
+    it('voteInsertGetParam', () => {
+        let cats;
+        let ids = ['xyz', 'abc']
+        let vote = 'abc';
+        let ip = '127.0.0.1';
+        
+        cats = new Cats();
+        expect(JSON.stringify(cats.voteInsertGetParam(ids, vote, ip)))
+            .toBe(JSON.stringify(['abc:xyz', 'abc', '127.0.0.1']))
+    })
 });

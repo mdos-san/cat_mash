@@ -52,8 +52,14 @@ class Cats {
         psql.none('INSERT INTO vote(voteBetween, vote, ip) VALUES ($1, $2, $3)', param);
     }
 
-    voteInsertGetParam() {
+    voteInsertGetParam(ids, vote, ip) {
+        let sorted_ids = ids.slice().sort();
+        let ret = [];
 
+        ret.push(sorted_ids.join(':'));
+        ret.push(vote);
+        ret.push(ip);
+        return (ret);
     }
 }
 
