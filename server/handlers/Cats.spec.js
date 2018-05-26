@@ -5,6 +5,7 @@ describe('[CLASS] Cats', () => {
     let res;
     beforeEach(() => {
         req = {
+            connection: () => {}
         };
         res = {
             end: () => {}
@@ -73,6 +74,16 @@ describe('[CLASS] Cats', () => {
         spyOn(res, 'end');
         cats.vote(req, res);
         expect(res.end).toHaveBeenCalledWith(JSON.stringify(obj));
+    });
+
+    it('vote should call voteInsert with right parameter', () => {
+        let cats;
+        
+        cats = new Cats();
+        req.body = { id0:  "id0", id1: "id1" }
+        spyOn(cats, 'voteInsert');
+        cats.vote(req, res);
+        expect(cats.voteInsert).toHaveBeenCalled();
     });
 
     it('voteInsert should insert vote in database', () => {

@@ -1,3 +1,5 @@
+let psql = require('../config/db');
+
 class Cats {
     constructor(data) {
         this.data = data;
@@ -37,14 +39,17 @@ class Cats {
             res.end(JSON.stringify(obj));
             return null
         }
-
         if (!req.body.id1) {
             obj.success = false;
             obj.message = "Please provide id1 param";
             res.end(JSON.stringify(obj));
             return null
         }
-
+        ids.push(req.body.id0);
+        ids.push(req.body.id1);
+        this.voteInsert(ids, req.body.vote, req.connection.remoteAddress, psql);
+        obj.message = 'Vote successfully added !';
+        res.end(JSON.stringify(obj));
     }
 
     voteInsert(ids, vote, ip, psql) {
