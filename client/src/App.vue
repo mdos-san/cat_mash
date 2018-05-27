@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <router-link to="/vote">Vote</router-link>
+    <router-link to="/ranking">Ranking</router-link>
     <router-view/>
   </div>
 </template>
@@ -17,6 +19,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding: 24px;
 }
 </style>

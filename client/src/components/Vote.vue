@@ -1,9 +1,13 @@
 <template>
   <div class="vote">
       <h1>Vote</h1>
-      <div v-for="cat in cats" :key="cat.id">
-        <img :src="cat.link" v-on:click="vote(cat.id)"/>
-      </div>
+      <table>
+        <tr>
+          <td v-for="cat in cats" :key="cat.id">
+            <img :src="cat.link" v-on:click="vote(cat.id)"/>
+          </td>
+        </tr>
+      </table>
   </div>
 </template>
 
@@ -46,11 +50,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 img {
-  max-width: 100%;
+  max-width: 300px;
+  max-height: 300px;
 }
 
-div {
+span {
   width: 50%;
   display: inline-block;
 }
+
+div { text-align: center; }
 </style>

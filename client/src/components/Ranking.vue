@@ -46,4 +46,9 @@ tr {
   height: 100px;
 }
 
+table {
+  width: 100%;
+  text-align: center;
+}
+
 </style>
