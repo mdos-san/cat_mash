@@ -2,7 +2,7 @@
   <div class="vote">
       <h1>Vote</h1>
       <div v-for="cat in cats" :key="cat.id">
-        <img :src="cat.url" v-on:click="vote(cat.id)"/>
+        <img :src="cat.link" v-on:click="vote(cat.id)"/>
       </div>
   </div>
 </template>
