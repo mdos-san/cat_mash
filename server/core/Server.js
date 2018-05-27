@@ -13,6 +13,7 @@ class Server {
 
     middlewareLoad() {
         this.app.use(this.accessControlMiddleware);
+        this.app.use(this.middlewareAccessControlAllowHeaders);
         this.app.use(this.bodyparser.json());
     }
 

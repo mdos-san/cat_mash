@@ -106,6 +106,7 @@ describe('[Class] Server', () => {
         server.middlewareLoad();
 
         expect(app.use).toHaveBeenCalledWith(server.accessControlMiddleware);
+        expect(app.use).toHaveBeenCalledWith(server.middlewareAccessControlAllowHeaders);
         expect(app.use).toHaveBeenCalledWith(bodyparser.json());
     });
 
