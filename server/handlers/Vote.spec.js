@@ -114,8 +114,15 @@ describe('[CLASS] Vote', () => {
     });
 
     it('getRanking', () => {
-        spyOn(voteHandler, 'readVotes')
+        let data = [42, 42];
+        let readVotes_spy = {
+            then: (fct) => { fct(data); }
+        };
+
+        spyOn(voteHandler, 'readVotes').and.returnValue(readVotes_spy);
+        spyOn(res, 'end');
         voteHandler.getRanking(req, res);
         expect(voteHandler.readVotes).toHaveBeenCalled();
+        expect(res.end).toHaveBeenCalledWith(JSON.stringify(data));
     })
 });
