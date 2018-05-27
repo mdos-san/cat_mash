@@ -86,4 +86,19 @@ describe('[Class] Server', () => {
 
         expect(counter).toBe(1);
     });
+
+    it('accessControlMiddleware should set the correct header', () => {
+        let counter = 0;
+        let next = () => { counter++; };
+        let res = {
+            setHeader: () => {}
+        };
+        let server = new Server(express.mock, null, null, null);
+
+        spyOn(res, 'setHeader');
+        server.accessControlMiddleware(null, res, next);
+
+        expect(counter).toBe(1);
+        expect(res.setHeader).toHaveBeenCalledWith('Access-Control-Allow-Origin', 'http://localhost:8080');
+    });
 });

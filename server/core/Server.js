@@ -7,6 +7,11 @@ class Server {
         this.handlers = handlers;
     }
 
+    accessControlMiddleware(req, res, next) {
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+        next();
+    }
+
     run() {
         this.loadRoutes();
         this.app.listen(8081);
