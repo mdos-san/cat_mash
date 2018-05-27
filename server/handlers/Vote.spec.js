@@ -112,4 +112,10 @@ describe('[CLASS] Vote', () => {
         result = voteHandler.readVotes();
         expect(psql.many).toHaveBeenCalledWith('SELECT vote, COUNT(vote) FROM vote GROUP BY vote');
     });
+
+    it('getRanking', () => {
+        spyOn(voteHandler, 'readVotes')
+        voteHandler.getRanking(req, res);
+        expect(voteHandler.readVotes).toHaveBeenCalled();
+    })
 });

@@ -69,6 +69,11 @@ class VoteHandler {
     readVotes() {
         return (this.psql.many('SELECT vote, COUNT(vote) FROM vote GROUP BY vote'));
     }
+
+    getRanking() {
+        let result = this.readVotes();
+        console.log(result);
+    }
 }
 
 module.exports = VoteHandler;
