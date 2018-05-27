@@ -1,18 +1,17 @@
-let psql = require('../config/db');
-
-class Cats {
-    constructor(data) {
+class VoteHandler {
+    constructor(data, psql) {
         this.data = data;
+        this.psql = psql;
     }
 
-    getCatsPair(req, res) {
+    getPair(req, res) {
         let pair;
 
-        pair = this.catsPair(Math.random);
+        pair = this.generatePair(Math.random);
         res.end(JSON.stringify(pair));
     }
 
-    catsPair(random) {
+    generatePair(random) {
         let r1;
         let r2;
         let pair;
@@ -47,17 +46,17 @@ class Cats {
         }
         ids.push(req.body.id0);
         ids.push(req.body.id1);
-        this.voteInsert(ids, req.body.vote, req.connection.remoteAddress, psql);
+        this.insert(ids, req.body.vote, req.connection.remoteAddress, this.psql);
         obj.message = 'Vote successfully added !';
         res.end(JSON.stringify(obj));
     }
 
-    voteInsert(ids, vote, ip, psql) {
-        let param = this.voteInsertGetParam(ids, vote, ip);
-        psql.none('INSERT INTO vote(voteBetween, vote, ip) VALUES ($1, $2, $3)', param);
+    insert(ids, vote, ip) {
+        let param = this.insertGetParam(ids, vote, ip);
+        this.psql.none('INSERT INTO vote(voteBetween, vote, ip) VALUES ($1, $2, $3)', param);
     }
 
-    voteInsertGetParam(ids, vote, ip) {
+    insertGetParam(ids, vote, ip) {
         let sorted_ids = ids.slice().sort();
         let ret = [];
 
@@ -68,4 +67,4 @@ class Cats {
     }
 }
 
-module.exports = Cats;
+module.exports = VoteHandler;

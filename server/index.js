@@ -9,9 +9,9 @@ const routes = require('./routes.json');
 const cats = require('./cats.json');
 
 // Handlers
-const Cats = require('./handlers/Cats');
+const VoteHandler = require('./handlers/Vote');
 const handlers = {
-    Cats: new Cats(cats.images)
+    Vote: new VoteHandler(cats.images)
 };
 
 let server = new Server(express, routes, handlers, bodyparser);

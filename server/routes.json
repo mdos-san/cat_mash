@@ -1,4 +1,4 @@
 [
-    {"method": "get", "path": "/pair", "handler": "Cats", "action": "getCatsPair"},
-    {"method": "post", "path": "/vote", "handler": "Cats", "action": "vote"}
+    {"method": "get", "path": "/vote", "handler": "Vote", "action": "getPair"},
+    {"method": "post", "path": "/vote", "handler": "Vote", "action": "vote"}
 ]
