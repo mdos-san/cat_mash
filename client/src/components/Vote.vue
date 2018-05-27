@@ -57,7 +57,7 @@ h1 {
 img {
   max-width: 300px;
   max-height: 300px;
-  border-radius: 8px;
+  border-radius: 4px;
   transition: .1s all;
 }
 img:hover {
