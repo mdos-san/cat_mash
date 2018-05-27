@@ -35,7 +35,7 @@ export default {
       }
     },
     getData: async function () {
-      const response = await fetch('http://localhost:8081/pair')
+      const response = await fetch('http://localhost:8081/vote')
       const json = await response.json()
       this.cats = json
     }
