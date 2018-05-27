@@ -50,8 +50,11 @@ a {
   font-weight: bold;
   letter-spacing: .2rem;
   margin-left: 2rem;
+  transition: 1s all;
 }
+a:hover { color: #0099ff; }
 a:visited { color: white; }
+a:visited:hover { color: #0099ff; }
 
 span {
   display: inline-block;
@@ -61,9 +64,6 @@ span {
 .nav {
   width: 60%;
   text-align: right;
-}
-
-header {
 }
 
 main {

@@ -1,6 +1,6 @@
 <template>
   <div class="vote">
-      <h1>Vote</h1>
+      <h1>Click on the cutest cat !</h1>
       <table>
         <tr>
           <td v-for="cat in cats" :key="cat.id">
@@ -57,6 +57,12 @@ h1 {
 img {
   max-width: 300px;
   max-height: 300px;
+  border-radius: 8px;
+  transition: .1s all;
+}
+img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 span {
@@ -64,5 +70,9 @@ span {
   display: inline-block;
 }
 
+
 div { text-align: center; }
+
+table {width: 100%;}
+td {width: 50%;}
 </style>
