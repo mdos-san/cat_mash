@@ -6,7 +6,11 @@
 
 <script>
 export default {
-  name: 'Vote'
+  name: 'Vote',
+  created: async function () {
+    const response = await fetch('http://localhost:8081/pair')
+    console.log('Pair', response)
+  }
 }
 </script>
 

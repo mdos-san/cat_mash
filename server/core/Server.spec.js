@@ -3,6 +3,9 @@ const Server = require('./Server');
 describe('[Class] Server', () => {
     let app;
     let express;
+    let handlers;
+    let routes;
+    let server;
 
     beforeEach(() => {
         app = {
@@ -14,33 +17,7 @@ describe('[Class] Server', () => {
         express = {
             mock: () => { return app; }
         };
-
-        bodyparser = {
-            json: () => { return 42; }
-        };
-    });
-
-    it('should run an express server on port 8081', () => {
-        spyOn(express, 'mock').and.returnValues(app);
-        spyOn(app, 'listen');
-
-        var server = new Server(express.mock);
-
-        spyOn(server, 'loadRoutes');
-
-        server.run();
-
-        expect(express.mock).toHaveBeenCalled();
-        expect(app.listen).toHaveBeenCalledWith(8081);
-        expect(server.loadRoutes).toHaveBeenCalled();
-    });
-
-    it('should load routes', () => {
-        spyOn(express, 'mock').and.returnValues(app);
-        spyOn(app, 'get');
-        spyOn(app, 'post');
-
-        let routes = [
+        routes = [
             {
                 "method": "get",
                 "path": "/getpath",
@@ -54,7 +31,7 @@ describe('[Class] Server', () => {
                 "action": "postAction"
             }
         ];
-        let handlers = {
+        handlers = {
             HandlerGet: {
                 getAction: () => "get"
             },
@@ -62,10 +39,31 @@ describe('[Class] Server', () => {
                 postAction: () => "post"
             }
         }
+
+        bodyparser = {
+            json: () => { return 42; }
+        };
+        server = new Server(express.mock, routes, handlers, bodyparser);
+    });
+
+    it('should run an express server on port 8081', () => {
+        spyOn(express, 'mock').and.returnValues(app);
+        spyOn(app, 'listen');
+        spyOn(server, 'loadRoutes');
+
+        server.run();
+
+        expect(app.listen).toHaveBeenCalledWith(8081);
+        expect(server.loadRoutes).toHaveBeenCalled();
+    });
+
+    it('should load routes', () => {
+        spyOn(express, 'mock').and.returnValues(app);
+        spyOn(app, 'get');
+        spyOn(app, 'post');
         spyOn(handlers.HandlerGet.getAction, 'bind');
         spyOn(handlers.HandlerPost.postAction, 'bind');
 
-        var server = new Server(express.mock, routes, handlers);
         server.loadRoutes();
 
         expect(app.get).toHaveBeenCalledWith("/getpath", undefined)
@@ -76,14 +74,14 @@ describe('[Class] Server', () => {
 
     it('use the bodyparser.json middleware', () => {
         let counter = 0;
+        let server;
+
         app.use = (middleware) => {
-            counter++;
             expect(middleware).toBe(bodyparser.json());
+            counter++;
         }
-
-        let server = new Server(express.mock, null, null, bodyparser);
+        server = new Server(express.mock, null, null, bodyparser);
         server.run();
-
         expect(counter).toBe(1);
     });
 
@@ -93,7 +91,6 @@ describe('[Class] Server', () => {
         let res = {
             setHeader: () => {}
         };
-        let server = new Server(express.mock, null, null, null);
 
         spyOn(res, 'setHeader');
         server.accessControlMiddleware(null, res, next);
