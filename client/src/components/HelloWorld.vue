@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>Do you like cats ?</h1>
     <p>We will give you the opportunity to vote for the cuttest cat !</p>
-    <p>Be ready and start voting ! Don't forget to check the ranking !</p>
+    <p>Be ready to start voting ! Don't forget to check the ranking !</p>
     <router-link to="/vote">Start voting !</router-link>
   </div>
 </template>

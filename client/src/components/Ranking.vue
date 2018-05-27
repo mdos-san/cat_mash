@@ -46,7 +46,10 @@ tr {
   height: 100px;
 }
 
-h1 { margin: 3rem; }
+h1 {
+  font-weight: bold;
+  margin: 6rem 0 3rem;
+}
 
 table {
   width: 100%;

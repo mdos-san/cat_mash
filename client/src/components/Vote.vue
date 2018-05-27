@@ -49,6 +49,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h1 {
+  font-weight: bold;
+  margin: 6rem 0 3rem;
+}
+
 img {
   max-width: 300px;
   max-height: 300px;
