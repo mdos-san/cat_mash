@@ -8,16 +8,22 @@ html, body {
     width: 100%;
     height: 100%;
     color: white;
+    overflow: hidden;
 }
 
 html { font-size: 10px; }
 
 body {
     font-size: 1.6rem;
-    padding: 2rem 4rem;
     background-image:
     linear-gradient(to right bottom, rgba(0, 102, 204, .7), rgba(102, 204, 255, .7)),
-    url(https://images.unsplash.com/photo-1506014739647-c231072489c4?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&dl=christian-wright-386668-unsplash.jpg&s=472cc68f70f06ac2825e21c97b324793)
+    url(https://images.unsplash.com/photo-1455145914126-c357157e2db0?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&dl=veronika-homchis-64124-unsplash.jpg&s=b391671dccda9b03cc8caff3c62b9708)
     ;
+    background-position: center center;
     background-size: cover;
+}
+
+h1 {
+    font-weight: lighter;
+    letter-spacing: 1rem;
 }

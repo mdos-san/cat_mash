@@ -1,9 +1,16 @@
 <template>
   <div id="app">
-    <h1>Cat Mash</h1>
-    <router-link to="/vote">Vote</router-link>
-    <router-link to="/ranking">Ranking</router-link>
-    <router-view/>
+    <header>
+      <span class="brand">
+        <h1>Cat Mash</h1>
+      </span><span class="nav">
+        <router-link to="/vote">Vote</router-link>
+        <router-link to="/ranking">Ranking</router-link>
+      </span>
+    </header>
+    <main>
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
@@ -18,6 +25,49 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  padding: 3rem 6rem;
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+  max-width: 100%;
+  display: table
 }
+
+#app > * {
+  display: table-row;
+}
+
+h1 {
+  display: inline-block;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  letter-spacing: .2rem;
+  margin-left: 2rem;
+}
+a:visited { color: white; }
+
+span {
+  display: inline-block;
+}
+
+.brand { width: 40%; }
+.nav {
+  width: 60%;
+  text-align: right;
+}
+
+header {
+}
+
+main {
+  height: 100%;
+  overflow-y: auto;
+}
+
+
 </style>
