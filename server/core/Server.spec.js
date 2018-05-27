@@ -98,4 +98,12 @@ describe('[Class] Server', () => {
         expect(counter).toBe(1);
         expect(res.setHeader).toHaveBeenCalledWith('Access-Control-Allow-Origin', 'http://localhost:8080');
     });
+
+    it('middlewareLoad', () => {
+        spyOn(app, 'use');
+
+        server.middlewareLoad();
+
+        expect(app.use).toHaveBeenCalledWith(server.accessControlMiddleware);
+    });
 });
