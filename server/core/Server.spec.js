@@ -72,19 +72,6 @@ describe('[Class] Server', () => {
         expect(handlers.HandlerPost.postAction.bind).toHaveBeenCalledWith(handlers.HandlerPost);
     });
 
-    it('use the bodyparser.json middleware', () => {
-        let counter = 0;
-        let server;
-
-        app.use = (middleware) => {
-            expect(middleware).toBe(bodyparser.json());
-            counter++;
-        }
-        server = new Server(express.mock, null, null, bodyparser);
-        server.run();
-        expect(counter).toBe(1);
-    });
-
     it('accessControlMiddleware should set the correct header', () => {
         let counter = 0;
         let next = () => { counter++; };
@@ -105,5 +92,14 @@ describe('[Class] Server', () => {
         server.middlewareLoad();
 
         expect(app.use).toHaveBeenCalledWith(server.accessControlMiddleware);
+        expect(app.use).toHaveBeenCalledWith(bodyparser.json());
     });
+
+    it('init', () => {
+        spyOn(server, 'middlewareLoad');
+
+        server.init();
+
+        expect(server.middlewareLoad).toHaveBeenCalled();
+    })
 });

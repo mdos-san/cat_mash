@@ -1,14 +1,19 @@
 class Server {
     constructor(express, routes, handlers, bodyparser) {
         this.app = express();
-        if (bodyparser)
-            this.app.use(bodyparser.json());
         this.routes = routes;
         this.handlers = handlers;
+        this.bodyparser = bodyparser;
+        this.init();
+    }
+
+    init() {
+        this.middlewareLoad();
     }
 
     middlewareLoad() {
         this.app.use(this.accessControlMiddleware);
+        this.app.use(this.bodyparser.json());
     }
 
     accessControlMiddleware(req, res, next) {
