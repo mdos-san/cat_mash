@@ -100,8 +100,6 @@ describe('[Class] Server', () => {
         expect(res.setHeader).toHaveBeenCalledWith('Access-Control-Allow-Headers', 'Content-Type');
     });
 
-
-
     it('middlewareLoad', () => {
         spyOn(app, 'use');
 
