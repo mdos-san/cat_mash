@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>Cat Mash</h1>
     <router-link to="/vote">Vote</router-link>
     <router-link to="/ranking">Ranking</router-link>
     <router-view/>
