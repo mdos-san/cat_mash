@@ -32,9 +32,9 @@ describe('[CLASS] Vote', () => {
     it('generatePair should return a random pair of data', () => {
         let result;
 
-        spyOn(psql, 'none').and.returnValue(42);
+        spyOn(psql, 'many').and.returnValue(42);
         result = voteHandler.generatePair(Math.random);
-        expect(psql.none).toHaveBeenCalledWith('SELECT * FROM cat ORDER BY RANDOM() LIMIT 2;');
+        expect(psql.many).toHaveBeenCalledWith('SELECT * FROM cat ORDER BY RANDOM() LIMIT 2;');
         expect(result).toBe(42);
     });
 
@@ -42,15 +42,20 @@ describe('[CLASS] Vote', () => {
         let data = [
             {id: 'id_1', url: 'url_1'},
             {id: 'id_2', url: 'url_2'},
-        ] 
+        ];
+        let error = {
+            success: false
+        };
         let promise = {
-            then: (fct) => fct(data)
+            then: (fct) => fct(data),
+            catch: (fct) => fct(error)
         };
         spyOn(voteHandler, 'generatePair').and.returnValue(promise);
         spyOn(res, 'end');
         voteHandler.getPair(req, res);
 
         expect(res.end).toHaveBeenCalledWith(JSON.stringify(data));
+        expect(res.end).toHaveBeenCalledWith(JSON.stringify(error));
     });
 
     it('voteHandler should check for id0 presence', () => {

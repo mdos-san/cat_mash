@@ -11,10 +11,13 @@ class VoteHandler {
         promise.then((data) => {
             res.end(JSON.stringify(data));
         });
+        promise.catch(e => {
+            res.end(JSON.stringify(e));
+        });
     }
 
     generatePair() {
-        return this.psql.none('SELECT * FROM cat ORDER BY RANDOM() LIMIT 2;');
+        return this.psql.many('SELECT * FROM cat ORDER BY RANDOM() LIMIT 2;');
     }
 
     vote(req, res) {
