@@ -21,6 +21,11 @@ class Server {
         next();
     }
 
+    middlewareAccessControlAllowHeaders(req, res, next) {
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        next();
+    }
+
     run() {
         this.loadRoutes();
         this.app.listen(8081);

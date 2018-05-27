@@ -86,6 +86,22 @@ describe('[Class] Server', () => {
         expect(res.setHeader).toHaveBeenCalledWith('Access-Control-Allow-Origin', 'http://localhost:8080');
     });
 
+    it('middlewareAccessControlAllowHeaders should set the correct header', () => {
+        let counter = 0;
+        let next = () => { ++counter; };
+        let res = {
+            setHeader: () => {}
+        };
+
+        spyOn(res, 'setHeader');
+        server.middlewareAccessControlAllowHeaders(null, res, next);
+
+        expect(counter).toBe(1);
+        expect(res.setHeader).toHaveBeenCalledWith('Access-Control-Allow-Headers', 'Content-Type');
+    });
+
+
+
     it('middlewareLoad', () => {
         spyOn(app, 'use');
 
