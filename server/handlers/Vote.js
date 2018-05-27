@@ -5,24 +5,16 @@ class VoteHandler {
     }
 
     getPair(req, res) {
-        let pair;
+        let promise;
 
-        pair = this.generatePair(Math.random);
-        res.end(JSON.stringify(pair));
+        promise = this.generatePair(Math.random);
+        promise.then((data) => {
+            res.end(JSON.stringify(data));
+        });
     }
 
-    generatePair(random) {
-        let r1;
-        let r2;
-        let pair;
-
-        r1 = parseInt(random() * this.data.length);
-        r2 = parseInt(random() * this.data.length);
-        pair = [];
-        pair.push(this.data[r1]);
-        pair.push(this.data[r2]);
-
-        return (pair);
+    generatePair() {
+        return this.psql.none('SELECT * FROM cat ORDER BY RANDOM() LIMIT 2;');
     }
 
     vote(req, res) {
