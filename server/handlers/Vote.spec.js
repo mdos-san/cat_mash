@@ -113,7 +113,7 @@ describe('[CLASS] Vote', () => {
 
         spyOn(psql, 'many');
         result = voteHandler.readVotes();
-        expect(psql.many).toHaveBeenCalledWith('SELECT vote, COUNT(vote) FROM vote GROUP BY vote ORDER BY COUNT(vote) DESC');
+        expect(psql.many).toHaveBeenCalledWith(`SELECT COUNT(vote.vote) AS votes, cat.link AS url FROM vote JOIN cat ON vote.vote = CAST(cat.id AS varchar) GROUP BY cat.link ORDER BY votes DESC;`);
     });
 
     it('getRanking', () => {
