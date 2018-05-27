@@ -11,6 +11,11 @@ html, body {
     overflow: hidden;
 }
 
+.scroll {
+    height: 100%;
+    overflow: auto;
+}
+
 html { font-size: 10px; }
 
 body {
@@ -27,3 +32,5 @@ h1 {
     font-weight: lighter;
     letter-spacing: 1rem;
 }
+
+.m0 { margin: 0; }

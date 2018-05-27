@@ -46,6 +46,8 @@ tr {
   height: 100px;
 }
 
+h1 { margin: 3rem; }
+
 table {
   width: 100%;
   height: 100%;

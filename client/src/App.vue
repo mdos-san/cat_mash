@@ -2,7 +2,9 @@
   <div id="app">
     <header>
       <span class="brand">
-        <h1>Cat Mash</h1>
+        <router-link class="m0" to="/">
+          <h1>Cat Mash</h1>
+        </router-link>
       </span><span class="nav">
         <router-link to="/vote">Vote</router-link>
         <router-link to="/ranking">Ranking</router-link>
@@ -25,12 +27,12 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 3rem 6rem;
+  padding: 5rem;
   height: 100%;
   max-height: 100%;
   width: 100%;
   max-width: 100%;
-  display: table
+  display: table;
 }
 
 #app > * {
