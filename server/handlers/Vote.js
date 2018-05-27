@@ -65,6 +65,10 @@ class VoteHandler {
         ret.push(ip);
         return (ret);
     }
+
+    readVotes() {
+        return (this.psql.many('SELECT vote, COUNT(vote) FROM vote GROUP BY vote'));
+    }
 }
 
 module.exports = VoteHandler;

@@ -18,7 +18,10 @@ describe('[CLASS] Vote', () => {
             {id: 'id_1', url: 'url_1'},
             {id: 'id_2', url: 'url_2'},
         ];
-        psql = { none: () => {} };
+        psql = {
+            none: () => {},
+            many: () => {}
+        };
         voteHandler = new VoteHandler(obj, psql);
     });
 
@@ -101,4 +104,12 @@ describe('[CLASS] Vote', () => {
         expect(JSON.stringify(voteHandler.insertGetParam(ids, vote, ip)))
             .toBe(JSON.stringify(['abc:xyz', 'abc', '127.0.0.1']))
     })
+
+    it('readVotes', () => {
+        let result;
+
+        spyOn(psql, 'many');
+        result = voteHandler.readVotes();
+        expect(psql.many).toHaveBeenCalledWith('SELECT vote, COUNT(vote) FROM vote GROUP BY vote');
+    });
 });
