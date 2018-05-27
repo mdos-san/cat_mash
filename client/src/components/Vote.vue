@@ -70,7 +70,6 @@ span {
   display: inline-block;
 }
 
-
 div { text-align: center; }
 
 table {width: 100%;}

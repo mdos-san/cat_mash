@@ -1,16 +1,14 @@
 <template>
   <div class="ranking">
       <h1>Ranking</h1>
-      <table>
-        <tr v-for="rank in ranks" v-bind:key="rank.id">
-          <td>
-            <img :src="rank.url" />
-          </td>
-          <td>
+        <div class="card" v-for="rank in ranks" v-bind:key="rank.id">
+          <div class="card__img">
+            <img :src="rank.url"/>
+          </div>
+          <div class="card__body">
             <span>{{rank.votes}} Vote{{rank.votes > 1 ? 's' : '' }}</span>
-          </td>
-        </tr>
-      </table>
+          </div>
+        </div>
   </div>
 </template>
 
@@ -38,8 +36,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 img {
-  max-height: 100px;
-  max-width: 100px;
+  width: 100%;
 }
 
 tr {
@@ -60,6 +57,26 @@ table {
 
 .ranking {
   text-align: center;
+}
+
+.card {
+  margin: 0 auto;
+  width: 300px;
+  margin-bottom: 3rem;
+}
+
+.card__img img {
+  display: block;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.card__body {
+  color: #555555;
+  background-color: white;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 1rem;
 }
 
 </style>
