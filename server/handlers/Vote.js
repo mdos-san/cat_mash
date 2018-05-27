@@ -67,7 +67,7 @@ class VoteHandler {
     }
 
     readVotes() {
-        return (this.psql.many('SELECT vote, COUNT(vote) FROM vote GROUP BY vote'));
+        return (this.psql.many('SELECT vote, COUNT(vote) FROM vote GROUP BY vote ORDER BY COUNT(vote) DESC'));
     }
 
     getRanking(req, res) {

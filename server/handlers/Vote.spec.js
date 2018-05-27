@@ -110,7 +110,7 @@ describe('[CLASS] Vote', () => {
 
         spyOn(psql, 'many');
         result = voteHandler.readVotes();
-        expect(psql.many).toHaveBeenCalledWith('SELECT vote, COUNT(vote) FROM vote GROUP BY vote');
+        expect(psql.many).toHaveBeenCalledWith('SELECT vote, COUNT(vote) FROM vote GROUP BY vote ORDER BY COUNT(vote) DESC');
     });
 
     it('getRanking', () => {
