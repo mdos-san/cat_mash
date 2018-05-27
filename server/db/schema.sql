@@ -4,3 +4,8 @@ CREATE TABLE vote (
     voteBetween VARCHAR NOT NULL,
     vote VARCHAR NOT NULL
 );
+
+CREATE TABLE cat (
+    id SERIAL PRIMARY KEY,
+    link VARCHAR NOT NULL
+);
