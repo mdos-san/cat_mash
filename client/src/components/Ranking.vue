@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     async getRanks () {
-      const response = await fetch('http://localhost:8081/ranking')
+      const response = await fetch(process.env.ROOT_API + '/ranking')
       const json = await response.json()
       this.ranks = json
     }

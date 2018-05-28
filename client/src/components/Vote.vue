@@ -28,7 +28,7 @@ export default {
       let id1 = this.cats[1].id
       let vote = id
 
-      const response = await fetch('http://localhost:8081/vote', {
+      const response = await fetch(process.env.ROOT_API + '/vote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({id0: id0, id1: id1, vote: vote})
@@ -39,7 +39,7 @@ export default {
       }
     },
     getData: async function () {
-      const response = await fetch('http://localhost:8081/vote')
+      const response = await fetch(process.env.ROOT_API + '/vote')
       const json = await response.json()
       this.cats = json
     }
