@@ -72,7 +72,7 @@ describe('[Class] Server', () => {
         expect(handlers.HandlerPost.postAction.bind).toHaveBeenCalledWith(handlers.HandlerPost);
     });
 
-    it('accessControlMiddleware should set the correct header', () => {
+    it('middlewareAccessControlAllowOrigin should set the correct header', () => {
         let counter = 0;
         let next = () => { counter++; };
         let res = {
@@ -80,7 +80,7 @@ describe('[Class] Server', () => {
         };
 
         spyOn(res, 'setHeader');
-        server.accessControlMiddleware(null, res, next);
+        server.middlewareAccessControlAllowOrigin(null, res, next);
 
         expect(counter).toBe(1);
         expect(res.setHeader).toHaveBeenCalledWith('Access-Control-Allow-Origin', 'http://localhost:8080');
@@ -105,7 +105,7 @@ describe('[Class] Server', () => {
 
         server.middlewareLoad();
 
-        expect(app.use).toHaveBeenCalledWith(server.accessControlMiddleware);
+        expect(app.use).toHaveBeenCalledWith(server.middlewareAccessControlAllowOrigin);
         expect(app.use).toHaveBeenCalledWith(server.middlewareAccessControlAllowHeaders);
         expect(app.use).toHaveBeenCalledWith(bodyparser.json());
     });
