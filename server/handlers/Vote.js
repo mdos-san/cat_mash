@@ -1,6 +1,5 @@
 class VoteHandler {
-    constructor(data, psql) {
-        this.data = data;
+    constructor(psql) {
         this.psql = psql;
     }
 

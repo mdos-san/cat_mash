@@ -14,15 +14,11 @@ describe('[CLASS] Vote', () => {
         res = {
             end: () => {}
         };
-        obj = [
-            {id: 'id_1', url: 'url_1'},
-            {id: 'id_2', url: 'url_2'},
-        ];
         psql = {
             none: () => {},
             many: () => {}
         };
-        voteHandler = new VoteHandler(obj, psql);
+        voteHandler = new VoteHandler(psql);
     });
 
     it('should store voteHandler provided in constructor', () => {
