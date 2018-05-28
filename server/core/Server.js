@@ -13,7 +13,7 @@ class Server {
     }
 
     middlewareLoad() {
-        this.app.use(this.middlewareAccessControlAllowOrigin);
+        this.app.use(this.middlewareAccessControlAllowOrigin.bind(this));
         this.app.use(this.middlewareAccessControlAllowHeaders);
         this.app.use(this.bodyparser.json());
     }

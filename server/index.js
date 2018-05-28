@@ -14,5 +14,5 @@ const handlers = {
     Vote: new VoteHandler(psql)
 };
 
-let server = new Server(express, routes, handlers, bodyparser);
+let server = new Server(express, routes, handlers, bodyparser, process);
 server.run();

@@ -110,9 +110,10 @@ describe('[Class] Server', () => {
     it('middlewareLoad', () => {
         spyOn(app, 'use');
 
+        spyOn(server.middlewareAccessControlAllowOrigin, 'bind').and.returnValue(42);
         server.middlewareLoad();
 
-        expect(app.use).toHaveBeenCalledWith(server.middlewareAccessControlAllowOrigin);
+        expect(app.use).toHaveBeenCalledWith(42);
         expect(app.use).toHaveBeenCalledWith(server.middlewareAccessControlAllowHeaders);
         expect(app.use).toHaveBeenCalledWith(bodyparser.json());
     });
