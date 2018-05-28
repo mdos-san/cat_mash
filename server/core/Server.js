@@ -1,9 +1,10 @@
 class Server {
-    constructor(express, routes, handlers, bodyparser) {
+    constructor(express, routes, handlers, bodyparser, process) {
         this.app = express();
         this.routes = routes;
         this.handlers = handlers;
         this.bodyparser = bodyparser;
+        this.process = process;
         this.init();
     }
 
@@ -18,7 +19,7 @@ class Server {
     }
 
     middlewareAccessControlAllowOrigin(req, res, next) {
-        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+        res.setHeader('Access-Control-Allow-Origin', this.process.env.ORIGIN);
         next();
     }
 

@@ -6,6 +6,7 @@ describe('[Class] Server', () => {
     let handlers;
     let routes;
     let server;
+    let process_mock;
 
     beforeEach(() => {
         app = {
@@ -43,7 +44,13 @@ describe('[Class] Server', () => {
         bodyparser = {
             json: () => { return 42; }
         };
-        server = new Server(express.mock, routes, handlers, bodyparser);
+
+        process_mock = {
+            env: {
+                ORIGIN: 'http://localhost'
+            }
+        }
+        server = new Server(express.mock, routes, handlers, bodyparser, process_mock);
     });
 
     it('should run an express server on port 8081', () => {
@@ -83,7 +90,7 @@ describe('[Class] Server', () => {
         server.middlewareAccessControlAllowOrigin(null, res, next);
 
         expect(counter).toBe(1);
-        expect(res.setHeader).toHaveBeenCalledWith('Access-Control-Allow-Origin', 'http://localhost:8080');
+        expect(res.setHeader).toHaveBeenCalledWith('Access-Control-Allow-Origin', process_mock.env.ORIGIN);
     });
 
     it('middlewareAccessControlAllowHeaders should set the correct header', () => {
