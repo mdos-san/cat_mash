@@ -61,7 +61,8 @@ table {
 
 .card {
   margin: 0 auto;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   margin-bottom: 3rem;
 }
 
