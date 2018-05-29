@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    color: white;
+    overflow: hidden;
+}
+
+.scroll {
+    height: 100%;
+    overflow: auto;
+}
+
+html { font-size: 10px; }
+
+body {
+    font-size: 1.6rem;
+    background-image:
+    linear-gradient(to right bottom, rgba(0, 102, 204, .7), rgba(102, 204, 255, .7)),
+    url(https://images.unsplash.com/photo-1455145914126-c357157e2db0?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&dl=veronika-homchis-64124-unsplash.jpg&s=b391671dccda9b03cc8caff3c62b9708)
+    ;
+    background-position: center center;
+    background-size: cover;
+}
+
+h1 {
+    font-weight: lighter;
+    letter-spacing: 1rem;
+}
+
+.m0 { margin: 0; }

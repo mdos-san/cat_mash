@@ -1,0 +1,5 @@
+[
+    {"method": "get", "path": "/vote", "handler": "Vote", "action": "getPair"},
+    {"method": "post", "path": "/vote", "handler": "Vote", "action": "vote"},
+    {"method": "get", "path": "/ranking", "handler": "Vote", "action": "getRanking"}
+]

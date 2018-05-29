@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server for Cat Mash",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jasmine core/* handlers/*"
+  },
+  "author": "mdos-san",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "pg-promise": "^8.4.4"
+  },
+  "devDependencies": {
+    "jasmine": "^3.1.0"
+  }
+}
